@@ -222,8 +222,10 @@ def parse_parser_xml_results(xml, file_name="", raw_output=False):
     # Making a raw sentence list of dictionaries:
     raw_sent_list = document[u'sentences'][u'sentence']
 
+    if type(raw_sent_list) != list:
+        raw_sent_list = [raw_sent_list]
+    
     # Convert sentences to the format like python
-    # TODO: If there is only one sentence in input sentence,
     # raw_sent_list is dict and cannot decode following code...
     sentences = [{'dependencies': [[dep['dep'][i]['@type'],
                                     dep['dep'][i]['governor']['#text'],
